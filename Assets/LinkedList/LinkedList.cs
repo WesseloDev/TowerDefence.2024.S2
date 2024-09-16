@@ -35,6 +35,17 @@ namespace LinkedList
                 current.next = newNode;
             }
         }
+        
+        public void DeleteNext()
+        {
+            if (current.next == null)
+                return;
+
+            Node delNode = current.next;
+            current.next = current.next.next;
+            current.next.prev = current;
+            delNode = null;
+        }
 
         public void Next()
         {

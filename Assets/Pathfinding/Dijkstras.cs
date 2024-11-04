@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Dijksrtas : MonoBehaviour
+public abstract class Dijkstras : MonoBehaviour
 {
-    public Node startNode, endNode;
+    public Node startNode, goalNode;
 
     protected Node[] _nodesInScene;
 
@@ -18,6 +19,39 @@ public abstract class Dijksrtas : MonoBehaviour
         GetAllNodes();
     }
 
+    protected virtual void Start()
+    {
+        List<Node> path = FindShortestPath(startNode, goalNode);
+        DebugPath(path);
+    }
+
+    public void DebugPath(List<Node> path)
+    {
+        for (int i = 0; i < path.Count; i++)
+        {
+            Debug.DrawLine(path[i].transform.position, path[i + 1].transform.position, Color.green,5f);
+        }
+    }
+    
+    public List<Node> FindShortestPath(Node start, Node goal)
+    {
+        if (RunAlgorithm(start, goal))
+        {
+            List<Node> results = new List<Node>();
+            Node current = goal;
+            do
+            {
+                Debug.Log(current.name);
+                results.Insert(0,current);
+                current = current.PreviousNode;
+            } while (current != null);
+
+            return results;
+        }
+
+        return null;
+    }
+    
     protected virtual bool RunAlgorithm(Node start, Node goal)
     {
         List<Node> unexplored = new List<Node>();

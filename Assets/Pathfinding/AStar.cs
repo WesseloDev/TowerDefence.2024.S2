@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class AStar : Dijkstras
 {
-    // Nodes in this implementation won't move.
-    // If you want moving nodes, do this heuristic search at another point.
-    protected override void Start()
-    {
-        foreach (Node nodeInScene in _nodesInScene)
-        {
-            nodeInScene.SetUpHeuristic(goalNode.transform.position);
-        }
-
-        base.Start();
-    }
-
     protected override bool RunAlgorithm(Node start, Node goal)
     {
         List<Node> unexplored = new List<Node>();

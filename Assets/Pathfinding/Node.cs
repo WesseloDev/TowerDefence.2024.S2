@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,9 +31,15 @@ public class Node : MonoBehaviour
     public float Heuristic
     {
         get => _heuristic;
-        set => _heuristic = value;
+        set
+        {
+            _heuristic = value;
+            heuristicChanged?.Invoke();
+        }
     }
 
+    public static Action heuristicChanged;
+    
     public float pathHeuristicWeight => _pathWeight + _heuristic;
     
     public void ResetNode()

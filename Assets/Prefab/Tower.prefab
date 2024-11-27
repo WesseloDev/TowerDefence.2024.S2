@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 784420014930358170}
   serializedVersion: 2
   m_LocalRotation: {x: -0.4999993, y: -0.4999993, z: 0.5000007, w: 0.5000007}
-  m_LocalPosition: {x: 0.068, y: 0.49, z: 0.491}
-  m_LocalScale: {x: 0.28405, y: 0.28405, z: 0.28405}
+  m_LocalPosition: {x: -0.005, y: 0.49, z: 0.491}
+  m_LocalScale: {x: 0.2, y: 0.28405, z: 0.79572004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2304095537029110267}
@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 1014075008002489400}
   - component: {fileID: 174497297522032873}
   - component: {fileID: 8588392665500109265}
-  - component: {fileID: 1742435687398342426}
   - component: {fileID: 6609467734063476533}
+  - component: {fileID: 1742435687398342426}
   m_Layer: 7
   m_Name: Tower
   m_TagString: Untagged
@@ -114,7 +114,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 1, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6018073606883598794}
@@ -148,7 +148,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 61dde25bb4c3ccc4ba4dcf193b403779, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,22 +189,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5
+  m_Radius: 1.75
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &1742435687398342426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3511255931113737121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe9c75f48889a248b84ccb472f51d79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyTag: Enemy
-  _trackedObject: {fileID: 0}
 --- !u!120 &6609467734063476533
 LineRenderer:
   serializedVersion: 2
@@ -309,3 +295,17 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1742435687398342426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511255931113737121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe9c75f48889a248b84ccb472f51d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyTag: Enemy
+  damage: 5

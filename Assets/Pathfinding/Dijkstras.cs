@@ -14,16 +14,16 @@ public abstract class Dijkstras : MonoBehaviour
         _nodesInScene = FindObjectsOfType<Node>();
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         GetAllNodes();
     }
 
-    protected virtual void Start()
+    /*protected virtual void Start()
     {
         List<Node> path = FindShortestPath(startNode, goalNode);
         DebugPath(path);
-    }
+    }*/
 
     public void DebugPath(List<Node> path)
     {
@@ -41,7 +41,7 @@ public abstract class Dijkstras : MonoBehaviour
             Node current = goal;
             do
             {
-                Debug.Log(current.name);
+                //Debug.Log(current.name);
                 results.Insert(0,current);
                 current = current.PreviousNode;
             } while (current != null);

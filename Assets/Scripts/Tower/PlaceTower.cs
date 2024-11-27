@@ -5,16 +5,18 @@ using UnityEngine;
 public class PlaceTower : MonoBehaviour
 {
     private Camera _camera => Camera.main;
-    [SerializeField] private GameObject _prefab;
+    public GameObject _prefab;
     public Transform parent;
-
+    public LayerMask _layerMask;
     public Vector3 offset;
     
-    [SerializeField] private LayerMask _layerMask;
     private float _distance = Mathf.Infinity;
-
-    public int cost = 50;
+    public int towerCost = 50;
     
+    /// <summary>
+    /// Attempts to place tower on mouse click.
+    /// Tower will only be placed if the player clicks on a grid tile that isn't occupied and can afford the tower.
+    /// </summary>
     void Update()
     {
         if (!Input.GetMouseButtonDown(0))
@@ -29,7 +31,7 @@ public class PlaceTower : MonoBehaviour
         if (!hit.transform.gameObject.TryGetComponent<GridTile>(out GridTile gridTile))
             return;
 
-        if (GameManager.Instance.TryUseCash(cost) && gridTile.PlaceTower())
+        if (GameManager.Instance.TryUseCash(towerCost) && gridTile.PlaceTower())
         {
             GameObject tower = GameObject.Instantiate(_prefab, hit.transform.position + offset, Quaternion.identity, parent);
         }

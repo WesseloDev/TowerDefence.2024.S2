@@ -8,6 +8,7 @@ public class GameOver : MonoBehaviour
 {
     public GameObject panel;
 
+    #region ConnectToAction
     void Start()
     {
         GameManager.gameOver += EnableGameOver;
@@ -17,6 +18,7 @@ public class GameOver : MonoBehaviour
     {
         GameManager.gameOver -= EnableGameOver;
     }
+    #endregion
 
     void EnableGameOver()
     {

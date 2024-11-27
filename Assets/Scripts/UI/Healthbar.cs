@@ -20,6 +20,10 @@ public class Healthbar : MonoBehaviour
         GameManager.healthChanged -= UpdateHealthbar;
     }
 
+    /// <summary>
+    /// Updates healthbar visuals.
+    /// </summary>
+    /// <param name="value">health percentage as a float from 0-1.</param>
     public void UpdateHealthbar(float value)
     {
         slider.value = value;

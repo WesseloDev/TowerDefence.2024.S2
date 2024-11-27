@@ -4,24 +4,7 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public GameObject prefab;
-    public Transform parent;
-
-    public int xSize, ySize;
-    public float offset;
-
-    private List<Node> _nodes = new List<Node>();
-    private List<GridTile> _tiles = new List<GridTile>();
-    
-    public Node StartNode
-    {
-        get => _nodes[0];
-    }
-    public Node EndNode
-    {
-        get => _nodes[_nodes.Count - 1];
-    }
-
+    #region Singleton
     private static Grid _instance;
 
     public static Grid Instance
@@ -44,17 +27,36 @@ public class Grid : MonoBehaviour
     {
         _instance = this;
     }
+    #endregion
     
+    public GameObject prefab;
+    public Transform parent;
+
+    public int xSize, ySize;
+    public float offset;
+
+    private List<Node> _nodes = new List<Node>();
+    private List<GridTile> _tiles = new List<GridTile>();
+    
+    public Node StartNode
+    {
+        get => _nodes[0];
+    }
+    public Node EndNode
+    {
+        get => _nodes[_nodes.Count - 1];
+    }
+
     void Start()
     {
         GenerateGrid();
         ConnectGridNeighbours();
-
-        /*AStar.Instance.startNode = _nodes[0];
-        AStar.Instance.goalNode = _nodes[_nodes.Count - 1];
-        AStar.Instance.UpdateHeuristics();*/
     }
 
+    /// <summary>
+    /// Generates grid by using a nested loop and randomly blocks certain tiles.
+    /// Generated node and tile get added to _nodes and _tiles.
+    /// </summary>
     private void GenerateGrid()
     {
         for (int i = 0; i < xSize; i++)
@@ -79,7 +81,10 @@ public class Grid : MonoBehaviour
         }
     }
 
-    // Below function only works properly for grids that have the same x and y size (i.e. 4x4, 9x9, 24x4)
+    /// <summary>
+    /// Connects grid neighbours, setting the node and grid tile's neighbours.
+    /// Only works for grids that have the same x and y size (i.e. 4x4, 9x9, 24x4)
+    /// </summary>
     private void ConnectGridNeighbours()
     {
         int index = 0;

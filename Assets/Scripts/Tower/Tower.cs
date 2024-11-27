@@ -17,6 +17,11 @@ public class Tower : MonoBehaviour
     private Vector3 _offset = new Vector3(0, 0.55f, 0);
 
     public float damage;
+    
+    /// <summary>
+    /// Checks if attack coroutine is already running.
+    /// Prevents multiple attack coroutines running, which causes the tower to attack more often.
+    /// </summary>
     private bool _attacking = false;
     
     void Awake()
@@ -37,22 +42,9 @@ public class Tower : MonoBehaviour
         
         transform.LookAt(new Vector3(_trackedPos.x, 1f, _trackedPos.z));
         _line.SetPosition(1, _trackedPos);
-        //_tracked.health -= damage * Time.deltaTime;
     }
 
-    void TrackObject(Collider other)
-    {
-        /*if (_tracked)
-            return;*/
-        
-        if (other.gameObject.tag != _enemyTag)
-            return;
-
-        _tracked = other.gameObject.GetComponent<Enemy>();
-
-        StartAttacking();
-    }
-    
+    #region Triggers
     private void OnTriggerEnter(Collider other)
     {
         TrackObject(other);
@@ -73,7 +65,18 @@ public class Tower : MonoBehaviour
         transform.rotation = Quaternion.identity;
         StopAttacking();
     }
+    #endregion
 
+    void TrackObject(Collider other)
+    {
+        if (other.gameObject.tag != _enemyTag)
+            return;
+
+        _tracked = other.gameObject.GetComponent<Enemy>();
+
+        StartAttacking();
+    }
+    
     private void StartAttacking()
     {
         if (_attacking)
@@ -82,7 +85,7 @@ public class Tower : MonoBehaviour
         _attacking = true;
         StartCoroutine("Attack");
     }
-
+    
     private void StopAttacking()
     {
         StopCoroutine("Attack");
@@ -90,6 +93,9 @@ public class Tower : MonoBehaviour
         _line.enabled = false;
     }
     
+    /// <summary>
+    /// Coroutine that runs while tracking an object to attack every second.
+    /// </summary>
     private IEnumerator Attack()
     {
         while (_tracked)

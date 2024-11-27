@@ -19,6 +19,10 @@ public class GridTile : MonoBehaviour
         _renderer = GetComponent<MeshRenderer>();
     }
 
+    /// <summary>
+    /// Attempts to place a tower on the tile.
+    /// </summary>
+    /// <returns>false if cannot place tower, true if tower placed successfully</returns>
     public bool PlaceTower()
     {
         if (blocked)
@@ -30,11 +34,17 @@ public class GridTile : MonoBehaviour
         return true;
     }
     
+    /// <summary>
+    /// Sets heuristic of node, so AI avoids it.
+    /// </summary>
     public void SetHeuristic()
     {
         _node.Heuristic = 999999999999999f;
     }
 
+    /// <summary>
+    /// Prevents towers being placed on the tile, and sets heuristics of the neighbours so AI will avoid them.
+    /// </summary>
     public void Block()
     {
         _renderer.material.color = Color.black;

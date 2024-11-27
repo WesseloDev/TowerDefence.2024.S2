@@ -26,7 +26,7 @@ public class FollowPath : MonoBehaviour
         _path = _aStar.FindShortestPath(Grid.Instance.StartNode, Grid.Instance.EndNode);
         _current = _path[_index];
 
-        StartCoroutine("StartMoving");
+        _moving = true;
     }
 
     void OnDestroy()
@@ -34,12 +34,17 @@ public class FollowPath : MonoBehaviour
         Node.heuristicChanged -= UpdatePath;
     }
 
+    /// <summary>
+    /// If not at the current target node, move towards it.
+    /// If at the current target node and the current target node is the goal, deal damage to the player.
+    /// If the current target node isn't the goal, start moving towards the next node in the path.
+    /// </summary>
     void Update()
     {
         if (!GameManager.Instance.gameActive || !_moving)
             return;
         
-        if (!Mathf.Approximately(_current.transform.position.magnitude - transform.position.magnitude, 0f))
+        if (Mathf.Approximately(_current.transform.position.magnitude - transform.position.magnitude, 0f))
         {
             transform.position = Vector3.MoveTowards(transform.position, _current.transform.position, _enemy.speed * Time.deltaTime);
         }
@@ -57,17 +62,12 @@ public class FollowPath : MonoBehaviour
         }
     }
 
-    private IEnumerator StartMoving()
-    {
-        yield return new WaitForSeconds(1);
-
-        _moving = true;
-    }
-    
+    /// <summary>
+    /// When a node has it's heuristics changed, the AI recalculates its path.
+    /// </summary>
     public void UpdatePath()
     {
         _path = _aStar.FindShortestPath(_current, Grid.Instance.EndNode);
         _index = 0;
-        //_current = _path[_index];
     }
 }

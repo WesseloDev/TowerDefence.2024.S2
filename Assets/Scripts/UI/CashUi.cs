@@ -8,7 +8,8 @@ public class CashUi : MonoBehaviour
 {
     public Text text;
     public string cashString = "${0}";
-    
+
+    #region ConnectToAction
     void Start()
     {
         GameManager.cashChanged += UpdateText;
@@ -18,6 +19,7 @@ public class CashUi : MonoBehaviour
     {
         GameManager.cashChanged -= UpdateText;
     }
+    #endregion
 
     private void UpdateText(int newCash)
     {

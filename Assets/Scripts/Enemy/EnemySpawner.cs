@@ -6,17 +6,21 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] prefabs;
     public Transform parent;
-    
-    public float spawnRate = 3f;
+
+    public float spawnDelay = 3f;
+    public float spawnRate = 8f;
     
     void Start()
     {
         StartCoroutine("SpawnEnemy");
     }
 
+    /// <summary>
+    /// After the spawn delay, start spawning random enemies at the specified spawn rate.
+    /// </summary>
     private IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(spawnDelay);
         
         while (GameManager.Instance.gameActive)
         {

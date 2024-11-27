@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 40
   speed: 2
-  damage: 20
+  damage: 25
   cashOnDeath: 50
 --- !u!114 &1185503372219397878
 MonoBehaviour:

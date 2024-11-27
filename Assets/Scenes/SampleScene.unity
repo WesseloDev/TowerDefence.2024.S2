@@ -1344,6 +1344,7 @@ GameObject:
   - component: {fileID: 2070500582}
   - component: {fileID: 2070500583}
   - component: {fileID: 2070500584}
+  - component: {fileID: 2070500585}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1365,11 +1366,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 3511255931113737121, guid: 2802e8bd57dbded4d97e1143c04f236d, type: 3}
   parent: {fileID: 667640556}
-  offset: {x: 0, y: 0.5, z: 0}
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
-  cost: 50
+  offset: {x: 0, y: 0.5, z: 0}
+  towerCost: 50
 --- !u!4 &2070500581
 Transform:
   m_ObjectHideFlags: 0
@@ -1402,6 +1403,7 @@ MonoBehaviour:
   - {fileID: 9109835191929544297, guid: 888bc680408a29e4aa4740b93226ae8b, type: 3}
   - {fileID: 9109835191929544297, guid: b5c666c278c4b894ba0069cd2a251fce, type: 3}
   parent: {fileID: 1204515665}
+  spawnDelay: 3
   spawnRate: 8
 --- !u!114 &2070500583
 MonoBehaviour:
@@ -1435,6 +1437,18 @@ MonoBehaviour:
   xSize: 15
   ySize: 15
   offset: 1
+--- !u!114 &2070500585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070500579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133a5a869244b05409f1a62bbb14277d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2115738390
 GameObject:
   m_ObjectHideFlags: 0

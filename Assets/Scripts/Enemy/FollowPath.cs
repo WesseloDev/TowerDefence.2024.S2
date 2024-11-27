@@ -43,8 +43,8 @@ public class FollowPath : MonoBehaviour
     {
         if (!GameManager.Instance.gameActive || !_moving)
             return;
-        
-        if (Mathf.Approximately(_current.transform.position.magnitude - transform.position.magnitude, 0f))
+
+        if (!Mathf.Approximately(_current.transform.position.magnitude - transform.position.magnitude, 0f))
         {
             transform.position = Vector3.MoveTowards(transform.position, _current.transform.position, _enemy.speed * Time.deltaTime);
         }
